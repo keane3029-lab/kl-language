@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — KL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap headbar">
+    <div class="wordmark">
+      <span class="kl">KL</span>
+      <span class="sub">keane language · v0.1</span>
+    </div>
+    <nav>
+      <a href="index.html">home</a>
+      <a href="translate.html">translate</a>
+      <a href="cipher.html" class="current">cipher</a>
+      <a href="about.html">about</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="page-head">
+    <span class="kicker">reference</span>
+    <h1>The cipher table</h1>
+    <p class="lede">26 letters, 26 two-letter codes. Most follow one rule — three don't, on purpose.</p>
+  </div>
+
+  <section class="no-border" style="padding-top:0;">
+    <div class="cipher-grid" id="cipherGrid"></div>
+    <p class="note"><span class="swatch"></span>Marked cells are the exceptions Keane defined on purpose — K breaks the "next letter" pattern, L has its own dedicated code, and Z wraps back around instead of running off the alphabet. They're kept exactly as written, not smoothed out.</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>How the rule works</h2>
+      <span class="tag">the short version</span>
+    </div>
+    <ul class="rule-list">
+      <li>
+        <div class="label">the pattern</div>
+        <div class="body">Every letter maps to itself followed by the next letter in the alphabet — A becomes "ab", B becomes "bc", and so on down the line.</div>
+      </li>
+      <li>
+        <div class="label">exception: K</div>
+        <div class="body">By the pattern K should be "kl" — but L already has its own code, so K becomes "km" instead.</div>
+      </li>
+      <li>
+        <div class="label">exception: L</div>
+        <div class="body">L breaks off from the sequence entirely and gets its own dedicated code: "lz".</div>
+      </li>
+      <li>
+        <div class="label">exception: Z</div>
+        <div class="body">Z has no "next letter" to borrow from, so instead of running off the alphabet it wraps around to itself twice: "zz".</div>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>KL / Keane Language</span>
+    <span>try it live — <a href="translate.html" style="color:var(--brass-bright);">open the translator</a></span>
+  </div>
+</footer>
+
+<script src="cipher.js"></script>
+<script>
+  buildCipherGrid(document.getElementById('cipherGrid'));
+</script>
+</body>
+</html>

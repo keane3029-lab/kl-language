@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Translate — KL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap headbar">
+    <div class="wordmark">
+      <span class="kl">KL</span>
+      <span class="sub">keane language · v0.1</span>
+    </div>
+    <nav>
+      <a href="index.html">home</a>
+      <a href="translate.html" class="current">translate</a>
+      <a href="cipher.html">cipher</a>
+      <a href="about.html">about</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="page-head">
+    <span class="kicker">live tool</span>
+    <h1>Translate</h1>
+    <p class="lede">Type English to encode it into KL, or flip modes and paste KL to decode it back.</p>
+  </div>
+
+  <section class="no-border" style="padding-top:0;">
+    <div class="translator">
+      <div class="mode-toggle">
+        <button id="btn-encode" class="active">Encode → KL</button>
+        <button id="btn-decode">Decode → English</button>
+      </div>
+
+      <div class="grid-io">
+        <div class="io-col">
+          <label id="input-label">English text</label>
+          <textarea id="input" placeholder="Type something...">KL is fire</textarea>
+        </div>
+        <div class="io-col">
+          <label id="output-label">KL text</label>
+          <div class="output-panel" id="output"></div>
+        </div>
+      </div>
+
+      <div class="chips" id="chips"></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>KL / Keane Language</span>
+    <span>need the reference? <a href="cipher.html" style="color:var(--brass-bright);">see the cipher table</a></span>
+  </div>
+</footer>
+
+<script src="cipher.js"></script>
+<script>
+  const input = document.getElementById('input');
+  const output = document.getElementById('output');
+  const chipsBox = document.getElementById('chips');
+  const inputLabel = document.getElementById('input-label');
+  const outputLabel = document.getElementById('output-label');
+  const btnEncode = document.getElementById('btn-encode');
+  const btnDecode = document.getElementById('btn-decode');
+  let mode = 'encode';
+
+  function render(){
+    const text = input.value;
+    if (!text.trim()){
+      output.textContent = mode === 'encode' ? 'kl output appears here' : 'english output appears here';
+      output.classList.add('empty');
+      chipsBox.innerHTML = '';
+      return;
+    }
+    output.classList.remove('empty');
+    const { result, chips } = mode === 'encode' ? klEncode(text) : klDecode(text);
+    output.textContent = result;
+    renderChips(chipsBox, chips);
+  }
+
+  function setMode(newMode){
+    mode = newMode;
+    if (mode === 'encode'){
+      btnEncode.classList.add('active');
+      btnDecode.classList.remove('active');
+      inputLabel.textContent = 'English text';
+      outputLabel.textContent = 'KL text';
+      input.value = 'KL is fire';
+    } else {
+      btnDecode.classList.add('active');
+      btnEncode.classList.remove('active');
+      inputLabel.textContent = 'KL text';
+      outputLabel.textContent = 'English text';
+      input.value = 'kmlz ijst fgijrsef';
+    }
+    render();
+  }
+
+  btnEncode.addEventListener('click', () => setMode('encode'));
+  btnDecode.addEventListener('click', () => setMode('decode'));
+  input.addEventListener('input', render);
+  render();
+</script>
+</body>
+</html>

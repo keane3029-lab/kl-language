@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KL — Keane Language</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap headbar">
+    <div class="wordmark">
+      <span class="kl">KL</span>
+      <span class="sub">keane language · v0.1</span>
+    </div>
+    <nav>
+      <a href="index.html" class="current">home</a>
+      <a href="translate.html">translate</a>
+      <a href="cipher.html">cipher</a>
+      <a href="about.html">about</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero no-border">
+    <div>
+      <span class="kicker">a constructed language, letter by letter</span>
+      <h1>every letter hides<br>two more inside it.</h1>
+      <p class="lede">KL replaces each letter of the alphabet with a two-letter code. No dictionary to memorize — just a table, and the rest follows.</p>
+      <div class="name-example">
+        <span>KEANE →</span> <b>kmefabnoef</b>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="translate.html">Open the translator</a>
+        <a class="btn" href="cipher.html">See the full cipher</a>
+      </div>
+    </div>
+    <div class="wheel-holder">
+      <svg class="wheel" viewBox="0 0 400 400" role="img" aria-label="Cipher wheel showing letters mapped to KL codes">
+        <circle class="track" cx="200" cy="200" r="188"/>
+        <circle class="track" cx="200" cy="200" r="132"/>
+        <circle class="hub" cx="200" cy="200" r="70"/>
+        <text x="200" y="196" text-anchor="middle" font-size="15" fill="var(--offwhite)" font-family="Fraunces, serif">KL</text>
+        <text x="200" y="214" text-anchor="middle" font-size="9" fill="var(--offwhite-dim)">cipher</text>
+        <g class="ring-outer"><g id="outerLetters"></g></g>
+        <g id="innerCodes"></g>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Three pages, one cipher</h2>
+      <span class="tag">where to go next</span>
+    </div>
+    <ul class="rule-list">
+      <li>
+        <div class="label">translate</div>
+        <div class="body">A live tool — type English and watch it encode into KL letter by letter, or paste KL and decode it back. <a href="translate.html" style="color:var(--brass-bright);">Open it →</a></div>
+      </li>
+      <li>
+        <div class="label">cipher</div>
+        <div class="body">The full A–Z reference table, with the three deliberate exceptions (K, L, Z) called out. <a href="cipher.html" style="color:var(--brass-bright);">View the table →</a></div>
+      </li>
+      <li>
+        <div class="label">about</div>
+        <div class="body">The story so far — what KL is, what it isn't yet, and where it might go. <a href="about.html" style="color:var(--brass-bright);">Read more →</a></div>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>KL / Keane Language</span>
+    <span>cipher-based · see translate.html</span>
+  </div>
+</footer>
+
+<script src="cipher.js"></script>
+<script>
+  buildWheel(document.getElementById('outerLetters'), document.getElementById('innerCodes'));
+</script>
+</body>
+</html>
